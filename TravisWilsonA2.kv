@@ -1,0 +1,71 @@
+BoxLayout:
+    id: mainBox
+    orientation: 'horizontal'
+    Popup:
+        id: popup
+        title: "Add Phonebook Entry"
+        on_parent:
+            if self.parent == mainBox: self.parent.remove_widget(self)
+        BoxLayout:
+            id: inputs
+            orientation: 'vertical'
+            Label:
+                text: 'Item Name: '
+                size_hint_y: None
+                height: '48dp'
+            TextInput:
+                id: itemName
+                value: ''
+                size_hint_y: None
+                height: '48dp'
+                multiline: False
+                write_tab: False
+            Label:
+                text: 'Item Detail: '
+                size_hint_y: None
+                height: '48dp'
+            TextInput:
+                id: itemDetail
+                value: ''
+                size_hint_y: None
+                height: '48dp'
+                multiline: False
+                write_tab: False
+            Label:
+                text: 'Item Price: '
+                size_hint_y: None
+                height: '48dp'
+            TextInput:
+                id: itemPrice
+                value: ''
+                size_hint_y: None
+                height: '48dp'
+                multiline: False
+                write_tab: False
+            Button:
+                text: 'Save Entry'
+                on_release: app.press_save(itemName.text, itemDetail.text, itemPrice.text)
+            Button:
+                text: 'Cancel'
+                on_release: app.press_cancel()
+    BoxLayout:
+        orientation: 'vertical'
+        ToggleButton:
+            id: hire_button
+            text: "Hire Item/s"
+            on_press: app.hire_items(self)
+        Button:
+            text: "Add Item/s"
+            on_press: app.add_item_button(self)
+        ToggleButton:
+            text: "Remove Item/s"
+        Button:
+            text: "Checkout Items"
+            on_press: app.checkout_items(self)
+
+    BoxLayout:
+        id: itemBox
+        orientation: 'vertical'
+    Label:
+        id: item_detail_label
+        text: "Text"
